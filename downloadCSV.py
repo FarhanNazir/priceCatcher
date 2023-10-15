@@ -5,6 +5,9 @@ from tkinter import ttk
 import customtkinter
 from threading import Thread
 from CTkListbox import *
+from datetime import date
+
+print((date.today().year) > 2022)
 
 def download_csv(url, save_path, progress_bar):
     chunk_size = 8192
@@ -68,6 +71,20 @@ root = customtkinter.CTk()
 root.title("CSV Downloader")
 root.geometry("480x480")
 
+page1 = tk.Frame(root)
+page1.pack()
+label1 = tk.Label(page1, text="Page 1")
+label1.pack(pady=20)
+btn1  = tk.Button(page1, text="show page 2", command=lambda: page2.tkraise())
+btn1.pack()
+
+page2 = tk.Frame(root)
+page2.pack()
+label2 = tk.Label(page2, text="Page 1")
+label2.pack(pady=20)
+
+
+
 listbox_label = customtkinter.CTkLabel(root, text="Select dates:")
 listbox_label.pack(padx=5, pady=5)
 listbox = CTkListbox(root, command=show_value, multiple_selection=True)
@@ -107,6 +124,9 @@ progress_bar = ttk.Progressbar(
     root, orient="horizontal", length=200, mode="determinate"
 )
 progress_bar.pack(pady=5)
+
+
+
 
 # Status label
 status_label = customtkinter.CTkLabel(root, text="")
